@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 
+import org.ibandorta.java.jdbc.models.Categoria;
 import org.ibandorta.java.jdbc.models.Producto;
 import org.ibandorta.java.jdbc.repositorio.ProductoImpl;
 import org.ibandorta.java.jdbc.repositorio.Repositorio;
@@ -21,23 +22,24 @@ public class EjemploJdbcUpdates {
 		try (Connection	conn = ConexionBaseDatos.getInstance()) {
 
 
-		Repositorio<Producto>repositorio = new ProductoImpl();
-		System.out.println("=============listar================");
-		repositorio.listar().forEach(System.out::println);
-		
-		System.out.println("=============Obtener por id================");
-		System.out.println(repositorio.porId(2L));
-		
-		
-		System.out.println("=============Editar nuevo producto================");
-		Producto producto = new Producto();
-		producto.setId(3L);
-		producto.setNombre("teclado Razer");
-		producto.setPrecio(700);
-		repositorio.guardar(producto);		
-		System.out.println("Producto editado con éxito!!!!!!!");
-		repositorio.listar().forEach(System.out::println);
+	           Repositorio<Producto> repositorio = new ProductoImpl();
+	            System.out.println("============= listar =============");
+	            repositorio.listar().forEach(System.out::println);
 
+	            System.out.println("============= obtener por id =============");
+	            System.out.println(repositorio.porId(1L));
+
+	            System.out.println("============= editar producto =============");
+	            Producto producto = new Producto();
+	            producto.setId(5L);
+	            producto.setNombre("Teclado Cosair k95 mecánico");
+	            producto.setPrecio(700);
+	            Categoria categoria = new Categoria();
+	            categoria.setId(2L);
+	            producto.setCategoria(categoria);
+	            repositorio.guardar(producto);
+	            System.out.println("Producto editado con éxito");
+	            repositorio.listar().forEach(System.out::println);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
