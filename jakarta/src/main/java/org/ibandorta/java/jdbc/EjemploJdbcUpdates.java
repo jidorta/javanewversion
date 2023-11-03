@@ -31,7 +31,7 @@ public class EjemploJdbcUpdates {
 
 	            System.out.println("============= editar producto =============");
 	            Producto producto = new Producto();
-	            producto.setId(5L);
+	            producto.setId(4L);
 	            producto.setNombre("Teclado Cosair k95 mecánico");
 	            producto.setPrecio(700);
 	            Categoria categoria = new Categoria();
